@@ -1,0 +1,35 @@
+resource "aws_vpc" "main" {
+  cidr_block = "192.168.0.0/16"
+  tags = {
+    Name = "slim"
+    env  = "dev"
+  }
+
+}
+resource "aws_subnet" "first" {
+  vpc_id     = "vpc-028c758e2b64fcc7c"
+  cidr_block = "192.168.0.0/24"
+  tags = {
+    Name = "web"
+  }
+  depends_on = [aws_vpc.main]
+
+}
+resource "aws_subnet" "se" {
+  vpc_id     = "vpc-028c758e2b64fcc7c"
+  cidr_block = "192.168.1.0/24"
+  tags = {
+    Name = "data"
+  }
+  depends_on = [aws_vpc.main]
+
+}
+resource "aws_subnet" "thi" {
+  vpc_id     = "vpc-028c758e2b64fcc7c"
+  cidr_block = "192.168.2.0/24"
+  tags = {
+    Name = "businees"
+  }
+  depends_on = [aws_vpc.main]
+
+}
